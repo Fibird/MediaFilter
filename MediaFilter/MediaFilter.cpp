@@ -154,25 +154,23 @@ void medianfilter(element* image, element* result, int N, int M)
 
 int main()
 {
-	IplImage *ImgSrc = cvLoadImage("sample_corrupted.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	IplImage *ImgReal = cvLoadImage("sample.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	IplImage *ImgDst_CPU = cvCreateImage(cvGetSize(ImgSrc), IPL_DEPTH_8U, 1);
-	int Size = ImgSrc->width * ImgSrc->height;
-	
-	unsigned char *pSrcData = (unsigned char*)(ImgSrc->imageData);
-	unsigned char *pDstData = (unsigned char*)(ImgDst_CPU->imageData);
-	for (int i = 0; i < 20; ++i)
+	Mat ImgSrc = imread("sample_corrupted.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat ImgReal = imread("sample.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat ImgDst = ImgSrc.clone();
+	int imgSize = ImgSrc.cols * ImgSrc.rows;
+	cout << ImgSrc.dims << endl;
+	unsigned char *pSrcData = (unsigned char*)(ImgSrc.data);
+	unsigned char *pDstData = (unsigned char*)(ImgDst.data);
+	//for (int i = 0; i < 20; ++i)
 	{
-		medianfilter(pSrcData, pDstData, Size);
+		medianfilter(pSrcData, pDstData, imgSize);
 		//medianfilter(pSrcData, pDstData, ImgSrc->width, ImgSrc->height);
 	}
 		
-	cvNamedWindow("Real");
-	cvShowImage("Real", ImgReal);
-	cvNamedWindow("Src");
-	cvShowImage("Src", ImgSrc);
-	cvNamedWindow("Dst");
-	cvShowImage("Dst", ImgDst_CPU);
+	namedWindow("Original Image");
+	imshow("Original Image", ImgSrc);
+	namedWindow("Processed Image");
+	imshow("Processed Image", ImgDst);
 	cvWaitKey();
     return 0;
 }
