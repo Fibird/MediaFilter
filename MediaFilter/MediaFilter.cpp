@@ -173,7 +173,7 @@ int main(int argc, char** argv)
 	{
 		medianfilter(pSrcData, pDstData, ImgSrc.cols, ImgSrc.rows);
 	}
-		
+	imwrite("processed_image.bmp", ImgDst);
 	namedWindow("Original Image");
 	imshow("Original Image", ImgSrc);
 	namedWindow("Processed Image");
