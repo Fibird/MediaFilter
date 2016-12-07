@@ -155,16 +155,17 @@ void medianfilter(element* image, element* result, int N, int M)
 int main()
 {
 	Mat ImgSrc = imread("sample_corrupted.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	Mat ImgReal = imread("sample.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat ImgReal = imread("sample.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 	Mat ImgDst = ImgSrc.clone();
 	int imgSize = ImgSrc.cols * ImgSrc.rows;
-	cout << ImgSrc.dims << endl;
+	
 	unsigned char *pSrcData = (unsigned char*)(ImgSrc.data);
 	unsigned char *pDstData = (unsigned char*)(ImgDst.data);
+
+	// Call median filter 5 times
 	for (int i = 0; i < 5; ++i)
 	{
-		medianfilter(pSrcData, pDstData, imgSize);
-		//medianfilter(pSrcData, pDstData, ImgSrc->width, ImgSrc->height);
+		medianfilter(pSrcData, pDstData, ImgSrc.cols, ImgSrc.rows);
 	}
 		
 	namedWindow("Original Image");
