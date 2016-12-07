@@ -152,9 +152,16 @@ void medianfilter(element* image, element* result, int N, int M)
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
-	Mat ImgSrc = imread("sample_corrupted.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat ImgSrc = imread("impulse noise.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+
+	if (!ImgSrc.data)          // Check for invalid input
+	{
+		cout << "Could not open or find the image" << std::endl;
+		return -1;
+	}
+
 	Mat ImgDst = ImgSrc.clone();
 	int imgSize = ImgSrc.cols * ImgSrc.rows;	// Get the Image size
 	
