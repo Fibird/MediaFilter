@@ -161,7 +161,7 @@ int main()
 	cout << ImgSrc.dims << endl;
 	unsigned char *pSrcData = (unsigned char*)(ImgSrc.data);
 	unsigned char *pDstData = (unsigned char*)(ImgDst.data);
-	//for (int i = 0; i < 20; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		medianfilter(pSrcData, pDstData, imgSize);
 		//medianfilter(pSrcData, pDstData, ImgSrc->width, ImgSrc->height);
