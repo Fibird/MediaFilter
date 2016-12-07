@@ -155,9 +155,8 @@ void medianfilter(element* image, element* result, int N, int M)
 int main()
 {
 	Mat ImgSrc = imread("sample_corrupted.bmp", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat ImgReal = imread("sample.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 	Mat ImgDst = ImgSrc.clone();
-	int imgSize = ImgSrc.cols * ImgSrc.rows;
+	int imgSize = ImgSrc.cols * ImgSrc.rows;	// Get the Image size
 	
 	unsigned char *pSrcData = (unsigned char*)(ImgSrc.data);
 	unsigned char *pDstData = (unsigned char*)(ImgDst.data);
