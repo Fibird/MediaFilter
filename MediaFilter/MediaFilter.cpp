@@ -154,7 +154,7 @@ void medianfilter(element* image, element* result, int N, int M)
 
 int main(int argc, char** argv)
 {
-	Mat ImgSrc = imread("impulse noise.bmp", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat ImgSrc = imread("scratch_noises.bmp", CV_LOAD_IMAGE_GRAYSCALE);
 
 	if (!ImgSrc.data)          // Check for invalid input
 	{
